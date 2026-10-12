@@ -27,7 +27,21 @@ dependency; no LLM provider is called at runtime.
 - **Small, reviewable pull requests.** Node-specific idioms are explained in the pull request, not
   only in chat.
 - **Infrastructure is never generated and applied by Claude.** It is applied by Gunnar, after a
-  read-only plan with the exact flags (global rule).
+  read-only plan with the exact flags (global rule). This is enforced, not only written down:
+  `.claude/settings.json` denies `tofu`/`terraform` apply, destroy, import and state changes,
+  and AWS CLI calls with mutating verbs (`create-*`, `delete-*`, `update-*`, `put-*` and so on,
+  plus `s3 cp/mv/rm/sync`). Read-only calls (`describe-*`, `list-*`, `get-*`, `tofu plan`) are
+  not denied.
+
+## Limits of the enforcement
+
+- The deny rules are pattern matches on the command, not a sandbox. They stop the straightforward
+  cases; a determined detour (a script, another tool) is not caught. They guard against mistakes,
+  not against intent.
+- AWS CLI verbs are matched by prefix. A mutating verb that doesn't start with one of the listed
+  prefixes is not denied; extend the list when one turns up.
+- They bind Claude Code sessions only. CI and humans are not affected, which is as intended
+  (humans apply infrastructure; CI never does, see the global rule).
 
 ## Consequences
 

@@ -25,6 +25,10 @@ a human) are in `~/.claude/CLAUDE.md`. This file holds only what is specific to 
   compute it. Destructive migrations are called out in the pull request.
 - **Check version-specific library APIs against current docs**, not memory, and record what was
   verified in `doc/decisions/`. See `doc/decisions/ai-generated-code.md`.
+- **Infrastructure is applied by Gunnar, never by Claude.** `.claude/settings.json` denies
+  `tofu`/`terraform` apply, destroy, import and state changes and mutating AWS CLI calls. Don't
+  work around a denied command; hand over the command and the plan output instead. See
+  `doc/decisions/ai-generated-code.md`.
 - **Gate before every commit:** `tsc --noEmit`, Biome and Vitest. The single command goes here
   once `package.json` exists.
 - **Prices in docs carry their source.** A price that was not checked against the AWS price list
