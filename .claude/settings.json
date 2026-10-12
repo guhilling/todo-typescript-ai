@@ -1,0 +1,38 @@
+{
+  "permissions": {
+    "deny": [
+      "Bash(tofu apply*)",
+      "Bash(tofu destroy*)",
+      "Bash(tofu import*)",
+      "Bash(tofu state *)",
+      "Bash(tofu taint*)",
+      "Bash(tofu untaint*)",
+      "Bash(tofu force-unlock*)",
+      "Bash(terraform apply*)",
+      "Bash(terraform destroy*)",
+      "Bash(terraform import*)",
+      "Bash(terraform state *)",
+      "Bash(terraform taint*)",
+      "Bash(terraform untaint*)",
+      "Bash(terraform force-unlock*)",
+      "Bash(aws * create-*)",
+      "Bash(aws * delete-*)",
+      "Bash(aws * update-*)",
+      "Bash(aws * put-*)",
+      "Bash(aws * modify-*)",
+      "Bash(aws * run-*)",
+      "Bash(aws * start-*)",
+      "Bash(aws * stop-*)",
+      "Bash(aws * terminate-*)",
+      "Bash(aws * attach-*)",
+      "Bash(aws * detach-*)",
+      "Bash(aws * register-*)",
+      "Bash(aws * deregister-*)",
+      "Bash(aws * invoke*)",
+      "Bash(aws s3 cp*)",
+      "Bash(aws s3 mv*)",
+      "Bash(aws s3 rm*)",
+      "Bash(aws s3 sync*)"
+    ]
+  }
+}
